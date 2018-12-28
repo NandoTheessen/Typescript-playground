@@ -1,5 +1,5 @@
+import add, { divide } from './add';
 import express from 'express';
-import add from './add';
 import morgan from 'morgan';
 
 export const server = express();
@@ -14,11 +14,20 @@ server.get('/', (req, res) => {
 
 export const router = express.Router();
 server.post('/', (req, res) => {
-  console.log(req.body);
   res.send(req.body);
 });
 
 server.listen(3000, () => console.log('Server is listening!'));
 
-console.log('Hello World!', add(a, b));
-console.log('OOOOH');
+/* tslint:disable */
+if (module.hot) {
+  console.log('✅  Server-side HMR Enabled!');
+
+  module.hot.accept('./server', () => {
+    console.log('🔁  HMR Reloading `./server`...');
+    server.removeListener('request', currentApp);
+    const newApp = require('./server').default;
+    server.on('request', newApp);
+    currentApp = newApp;
+  });
+}
