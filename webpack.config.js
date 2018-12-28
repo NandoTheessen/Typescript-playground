@@ -2,15 +2,25 @@ const path = require('path');
 
 module.exports = {
   target: 'node',
-  entry: {
-    main: {
-      app: ['./src/index.ts']
-    }
-  },
+  mode: 'development',
+  entry: './src/index.ts',
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'index.js'
   },
-  externals: [nodeExternals()]
+  module: {
+    rules: [
+      {
+        test: /\.ts|.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
 };
