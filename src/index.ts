@@ -11,6 +11,8 @@ server.use(morgan('dev'));
 server.get('/', (req, res) => {
   res.send({ msg: 'booooojaaa!' });
 });
+
+export const router = express.Router();
 server.post('/', (req, res) => {
   console.log(req.body);
   res.send(req.body);
@@ -19,3 +21,4 @@ server.post('/', (req, res) => {
 server.listen(3000, () => console.log('Server is listening!'));
 
 console.log('Hello World!', add(a, b));
+console.log('OOOOH');
