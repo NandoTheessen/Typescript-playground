@@ -4,15 +4,13 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "run:dev": "nodemon --exec babel-node --extensions '.ts' ./src/index.ts",
-    "build:wp": "webpack --config webpack.config.dev.js",
-    "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js\" --source-maps inline",
     "typecheck": "tsc",
     "build:server:prod": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "build:server:once": "cross-env NODE_ENV=development webpack --config webpack.config.server.js",
     "dev:server": "npm run build:server:once && npm-run-all --parallel nodemon:prod watch:server",
-    "watch:server": "cross-env NODE_ENV=development webpack --config webpack.config.server.js --watch",
-    "nodemon:prod": "cross-env NODE_ENV=development node-dev ./dist/server.prod.js"
+    "run:dev": "nodemon --exec babel-node --extensions '.ts' ./src/index.ts",
+    "nodemon:prod": "cross-env NODE_ENV=development node-dev ./dist/server.prod.js",
+    "watch:server": "cross-env NODE_ENV=development webpack --config webpack.config.server.js --watch"
   },
   "repository": {
     "type": "git",

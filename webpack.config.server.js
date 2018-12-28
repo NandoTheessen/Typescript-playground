@@ -40,10 +40,10 @@ const isProduction = nodeEnv !== 'development';
 let plugins = [
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify(nodeEnv)
-    }
+      NODE_ENV: JSON.stringify(nodeEnv),
+    },
   }),
-  new webpack.NamedModulesPlugin()
+  new webpack.NamedModulesPlugin(),
 ];
 if (!isProduction) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
@@ -52,27 +52,14 @@ const entry = isProduction
   ? ['./src/server.ts']
   : ['webpack/hot/poll?1000', './src/server.ts'];
 module.exports = {
-  mode: 'development',
   devtool: false,
+  entry: entry,
   externals: [
     nodeExternals({
-      whitelist: ['webpack/hot/poll?1000']
-    })
+      whitelist: ['webpack/hot/poll?1000'],
+    }),
   ],
-  name: 'server',
-  plugins: plugins,
-  target: 'node',
-  entry: entry,
-  output: {
-    publicPath: './dist/',
-    path: path.resolve(__dirname, './dist/'),
-    filename: 'server.prod.js'
-    // libraryTarget: 'commonjs2'
-  },
-  resolve: {
-    extensions: ['.ts', '.js'],
-    modules: ['./node_modules']
-  },
+  mode: 'development',
   module: {
     rules: [
       {
@@ -81,9 +68,10 @@ module.exports = {
           babelrc: true,
         },
         test: /\.(js|ts)$/,
-      }
-    ]
+      },
+    ],
   },
+  name: 'server',
   node: {
     Buffer: false,
     __dirname: false,
@@ -92,4 +80,16 @@ module.exports = {
     global: false,
     process: false,
   },
+  output: {
+    filename: 'server.prod.js',
+    path: path.resolve(__dirname, './dist/'),
+    publicPath: './dist/',
+    // libraryTarget: 'commonjs2'
+  },
+  plugins: plugins,
+  resolve: {
+    extensions: ['.ts', '.js'],
+    modules: ['./node_modules'],
+  },
+  target: 'node',
 };
