@@ -9,6 +9,9 @@ module.exports = {
     publicPath: '/',
     filename: 'index.js'
   },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   module: {
     rules: [
       {
