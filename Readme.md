@@ -1,4 +1,3 @@
-# REST APIs
+# Typescript playground
 
-- API desgin combining DB resources, route paths, HTTP verbs to allow applications to describe
-  what action they are trying to perform
+Boilerplate for a Express backend using typescript, webpack and babel
