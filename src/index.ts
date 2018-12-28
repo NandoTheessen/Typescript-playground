@@ -6,12 +6,14 @@ export const server = express();
 export const a: number = 5;
 export const b: number = 15;
 
+server.use(express.json());
 server.use(morgan('dev'));
 server.get('/', (req, res) => {
   res.send({ msg: 'booooojaaa!' });
 });
 server.post('/', (req, res) => {
   console.log(req.body);
+  res.send(req.body);
 });
 
 server.listen(3000, () => console.log('Server is listening!'));
