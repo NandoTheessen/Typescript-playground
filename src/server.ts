@@ -19,7 +19,7 @@ server.post('/', (req, res) => {
 
 server.listen(3000, () => console.log('Server is listening!'));
 
-/* tslint:disable */
+/* eslint-disable */
 if (module.hot) {
   console.log('✅  Server-side HMR Enabled!');
 

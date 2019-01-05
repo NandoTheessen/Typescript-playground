@@ -1,9 +1,13 @@
-export default function add(x: number, y: number) {
+export default function add(x: number, y: number): number {
   return x + y;
 }
 
-export function divide(x: number, y: number) {
+export function divide(x: number, y: number): number {
   return x / y;
+}
+
+export function multiply(x: number, y: number): number {
+  return x * y;
 }
 
 console.log('lalala');
