@@ -5,6 +5,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc",
+    "test": "jest",
     "build:server:prod": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "build:server:once": "cross-env NODE_ENV=development webpack --config webpack.config.server.js",
     "dev:server": "npm run build:server:once && npm-run-all --parallel nodemon:prod watch:server",
@@ -23,10 +24,8 @@
   },
   "lint-staged": {
     "linters": {
-      "*.{ts}": [
-        "prettier --write",
-        "tsc",
-        "git add"
+      "*.{ts, tsx}": [
+        "prettier --write"
       ]
     }
   },

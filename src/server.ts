@@ -3,13 +3,14 @@ import express from 'express';
 import morgan from 'morgan';
 
 export const server = express();
-export const a: number = 5;
-export const b: number = 15;
+const a = 5;
+const b = 15;
 
 server.use(express.json());
 server.use(morgan('dev'));
+
 server.get('/', (req, res) => {
-  res.send({ msg: 'booooojaaa!' });
+  res.send({ msg: req.babies });
 });
 
 export const router = express.Router();
