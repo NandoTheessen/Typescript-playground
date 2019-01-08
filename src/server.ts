@@ -18,9 +18,12 @@ server.get('/', (req, res) => {
 });
 
 export const router = express.Router();
+
 server.post('/', (req, res) => {
-  res.send(req.body);
+  res.status(200).send(req.body);
 });
+
+/* tslint:disable */
 server.listen(3000, () => console.log('Server is listening!'));
 
 // @ts-ignore
