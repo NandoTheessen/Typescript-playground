@@ -9,5 +9,3 @@ export function divide(x: number, y: number): number {
 export function multiply(x: number, y: number): number {
   return x * y;
 }
-
-console.log('lalala');
