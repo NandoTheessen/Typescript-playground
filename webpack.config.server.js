@@ -1,18 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
-// const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
+const nodeExternals = require('webpack-node-externals');
 
 const nodeEnv = process.env.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
 // Common plugins
-let plugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify(nodeEnv),
-    },
-  }),
-  new webpack.NamedModulesPlugin(),
-];
+let plugins = [new Dotenv(), new webpack.NamedModulesPlugin()];
 if (!isProduction) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
 }
@@ -22,11 +16,11 @@ const entry = isProduction
 module.exports = {
   devtool: false,
   entry: entry,
-  // externals: [
-  //   nodeExternals({
-  //     whitelist: ['webpack/hot/poll?1000'],
-  //   }),
-  // ],
+  externals: [
+    nodeExternals({
+      whitelist: ['webpack/hot/poll?1000'],
+    }),
+  ],
   mode: 'development',
   module: {
     rules: [

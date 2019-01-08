@@ -1,27 +1,8 @@
-import add, { divide } from './add';
 import express from 'express';
 import morgan from 'morgan';
+/* tslint:disable-next-line */
 
 export const server = express();
-const a = 5;
-const b = 15;
-function multiply(x: number, y: number): number {
-  return x * y;
-}
-
-multiply(5, 7);
-server.use(express.json());
-server.use(morgan('dev'));
-
-server.get('/', (req, res) => {
-  res.send({ msg: req.body });
-});
-
-export const router = express.Router();
-
-server.post('/', (req, res) => {
-  res.status(200).send(req.body);
-});
 
 /* tslint:disable */
 server.listen(3000, () => console.log('Server is listening!'));
